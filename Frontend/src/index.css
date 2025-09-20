@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+@variant hover (&:hover);
+
+ 
+
+*{
+    font-family: Outfit;
+}
+.active hr {
+    @apply block;
+}
+
+/* Your custom class */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+@theme {
+    --grid-template-columns-auto: repeat(auto-fill, minmax(200px, 1fr)) ;
+}
+@layer utilities {
+    .gridTemplateColumns-auto {
+    grid-template-columns: var(--grid-template-columns-auto);
+  }
+}
+@media (max-width:740px) {
+  .active p{
+    @apply text-orange-50 bg-cyan-700
+  }
+}
