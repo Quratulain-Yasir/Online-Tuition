@@ -42,7 +42,7 @@ if( isState === "Sign Up" ){
   useEffect(()=>{
     if(token){
 navigate('/')
-    }
+    } 
   },[token])
   return (
     <form onSubmit={HandleDefault} className="min-h-[80vh] flex items-center">

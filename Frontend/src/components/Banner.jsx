@@ -12,7 +12,6 @@ const Banner = () => {
     <h2 className='text-orange-50'> Book Lectures</h2>
 <h2 className='mt-3 text-orange-50'>with 100+ Trusted Teachers</h2>
 </div>
-<button onClick={()=> {navigate(`/login`); scrollTo(0 , 0)}}  className='bg-orange-50 text-sm sm:text-base text-gray-600 px-8 py-3 rounded-full mt-6 hover:scale-105 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out' >Create Account</button>
         </div>
         <div className="w-full md:w-1/2 lg:w-[370px] relative">
             <img className="w-full md:absolute md:bottom-0 md:right-0 max-w-md" src={assets.appointment_img} alt="appointment_img" />

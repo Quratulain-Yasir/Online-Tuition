@@ -6,3 +6,4 @@ await mongoose.connect(`${process.env.MONGODB_URL}/OnlineTuition`)
 }
 
 export default connectDB
+

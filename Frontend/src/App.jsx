@@ -29,7 +29,7 @@ import { ToastContainer , toast } from 'react-toastify'
   <Route path="/teachers/:speciality" element={<Teachers />} />
   <Route path="/lecture/:teachId" element={<Lecture />} />
   <Route path="/my-lectures" element={<MyLectures/>} />
-  <Route path="/" element={<Home />} />
+  
   <Route path="*" element={<NotFound />} />
 </Routes>
 <Footer />
