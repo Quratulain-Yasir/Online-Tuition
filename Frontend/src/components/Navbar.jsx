@@ -59,7 +59,7 @@ const Navbar = () => {
     <p className="hover:text-black cursor-pointer" onClick={logout} >Logout</p>
   </div>
 </div>
-          </div> : <button onClick={navigate("/login")} className="bg-cyan-700 text-orange-50 px-8 py-3 rounded-full font-light hidden md:block">Create Account</button> }
+          </div> : <button onClick={()=> navigate("/login")} className="bg-cyan-700 text-orange-50 px-8 py-3 rounded-full font-light hidden md:block">Create Account</button> }
 
           <img onClick={()=> setMenu(true)} src={assets.menu_icon} alt="menu_icon" className="w-6 md:hidden" />
                  {/* for small screen */}

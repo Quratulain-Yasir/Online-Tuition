@@ -54,7 +54,7 @@ const Teachers = () => {
                 navigate(
                   speciality === "Computer Science"
                     ? "/teachers"
-                    : "/teachers/Computer Science"
+                    : "/teachers/computer-science"
                 )
               }
             >
@@ -70,7 +70,7 @@ const Teachers = () => {
                 navigate(
                   speciality === "Chemistry"
                     ? "/teachers"
-                    : "/teachers/Chemistry"
+                    : "/teachers/chemistry"
                 )
               }
             >
@@ -158,7 +158,7 @@ const Teachers = () => {
             <div
               key={index}
               onClick={() => {
-                navigate(`/lecture/${item._id}`);
+                navigate(`/lectures/teacher/${item._id}`);
                 scrollTo(0, 0);
               }}
               className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500"

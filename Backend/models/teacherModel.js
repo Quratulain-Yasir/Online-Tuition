@@ -13,7 +13,15 @@ const teacherSchema = {
     address: {type:Object , required:true} , 
     avalibility: {type:Boolean , default:true} ,
     date: {type:Number , required:true} , 
-    slots_booked: {type:Object , default:{}}
+    slots_booked:{
+    type: [
+      {
+        slotDate: { type: String, required: true },
+        slotTime: { type: [String], required: true , default: [] }
+      }
+    ],
+    default: []
+  }
 }
 const teacherModel = mongoose.model("teacher" , teacherSchema)
 

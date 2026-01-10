@@ -1,5 +1,5 @@
 import express from "express"
-import {registerUser , loginUser , getProfile, updateProfile, bookLecture , listLecture } from "../controllers/userController.js";
+import {registerUser , loginUser , getProfile, updateProfile, bookLecture , listLecture, cancelLecture } from "../controllers/userController.js";
  
 const userRoute = express.Router();
 import upload from "../middleware/multer.js"
@@ -17,6 +17,8 @@ userRoute.post("/update-profile" , upload.single("image") , authUser , updatePro
 userRoute.post("/book-lecture" , authUser , bookLecture)
 
 userRoute.get("/lectures" , authUser , listLecture)
+
+userRoute.post("/lectures/cancel-lecture" , authUser , cancelLecture)
 
 // 
 export default userRoute

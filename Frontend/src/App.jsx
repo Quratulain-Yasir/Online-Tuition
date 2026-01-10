@@ -27,7 +27,7 @@ import { ToastContainer , toast } from 'react-toastify'
   <Route path="/student-profile" element={<StudentProfile />} />
   <Route path="/teachers" element={<Teachers />} />
   <Route path="/teachers/:speciality" element={<Teachers />} />
-  <Route path="/lecture/:teachId" element={<Lecture />} />
+  <Route path="/lectures/teacher/:teachId" element={<Lecture />} />
   <Route path="/my-lectures" element={<MyLectures/>} />
   
   <Route path="*" element={<NotFound />} />

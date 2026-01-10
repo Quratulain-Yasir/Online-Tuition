@@ -147,8 +147,8 @@ let slots_booked = typeof teachData.slots_booked === "object" && teachData.slots
       teachData,
       stdData,
       amount: teachData.fees,
-      slotTime, 
-      slotData: `${slotDate} ${slotTime}` ,
+      slotDate,
+      slotTime,  
       date: Date.now(),
     };
 
@@ -177,5 +177,29 @@ const  listLecture = async (req,res) => {
   }
 }
 
+// API to cancel lecture
+const cancelLecture = async(req,res) => {
+  try {
+    const {userId , lectureId} = req.body;
+    const lectureData = await lectureModel.findById(lectureId)
+    if(lectureData.userId !== userId) {
+      return res.json({success: false , message:"unauthorized action"})
+    }
+    await lectureModel.findByIdAndUpdate(lectureId , {cancelled:true}) 
+    const {teachId , slotDate , slotTime } = lectureData;
+    const teacherData = await teacherModel.findById(teachId)
+    let slots_booked = teacherData.slots_booked;
+// find the booking object for this date 
+let slotObj = slots_booked.find(obj => obj.slotDate === slotDate); 
+if (slotObj) { 
+  slotObj.slotTime = slotObj.slotTime.filter(time => time !== slotTime); }
 
-export { registerUser, loginUser, getProfile, updateProfile, bookLecture , listLecture };
+    await teacherModel.findByIdAndUpdate(teachId, {slots_booked})
+    res.json({success:true, message:"appointment cancelled" })
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+}
+
+
+export { registerUser, loginUser, getProfile, updateProfile, bookLecture , listLecture , cancelLecture };
