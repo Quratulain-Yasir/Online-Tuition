@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const MyLectures = () => {
   const { backendUrl, token } = useContext(AppContext);
   const [lectures, setLectures] = useState([]); 
-const navigate = useNavigate();
-  const month = [
+// const navigate = useNavigate();
+  const months = [
     "",
     "January",
     "February",
@@ -23,6 +23,12 @@ const navigate = useNavigate();
     "November",
     "December",
   ];
+
+  const slotDateFormate = (slotDate) => {
+    const dateArray = slotDate.split("_")
+    return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2];
+
+  }
 
 
   const getUserLecture = async () => {
@@ -43,14 +49,7 @@ const navigate = useNavigate();
   };
 
 
-  // const DateFormateArray = (slotDate) => {  
-      
-  //   const dateArray = slotDate.split("_");
-  //   return (
-  //     dateArray[0] + " " + month[Number(dateArray[1])] + " " + dateArray[2]
-  //   );
-  // };
-
+ 
   // cancel lecture function
   const cancelLecture = async (lectureId) => {
     try {
@@ -113,7 +112,7 @@ const navigate = useNavigate();
                 <span className="text-sm text-neutral-700 font-medium">
                   Date&Time:{" "}
                 </span>
-                 {item.slotDate} , {item.slotTime}
+                 {slotDateFormate(item.slotDate)} , {item.slotTime}
               </p>
               
             </div>
@@ -121,15 +120,13 @@ const navigate = useNavigate();
             <div></div>
 
             <div className="flex flex-col gap-2 justify-end">
-              <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-full hover:bg-cyan-700 hover:text-orange-50 transition-all duration-300 shadow-lg">
-                Pay Online
-              </button>
-              <button
+              {!item.cancelled && <button className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-full hover:bg-cyan-700 hover:text-orange-50 transition-all duration-300 shadow-lg">Pay Online</button> }
+              {!item.cancelled && <button
                 onClick={() => cancelLecture(item._id)}
-                className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-full hover:bg-red-600 hover:text-orange-50 transition-all duration-300 shadow-lg"
-              >
-                Cancel Lecture
-              </button>
+                className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded-full hover:bg-red-600 hover:text-orange-50 transition-all duration-300 shadow-lg">Cancel Lecture</button> }
+                {item.cancelled && <button
+                onClick={() => cancelLecture(item._id)}
+                className="sm:min-w-48 py-2 border border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-orange-50 transition-all duration-300 shadow-lg">Lecture Cancel</button>}
             </div>
           </div>
         ))}

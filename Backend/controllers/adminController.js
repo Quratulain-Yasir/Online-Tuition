@@ -1,6 +1,7 @@
 // multiple controller function for multiple api
 
 import teacherModel from "../models/teacherModel.js";
+import lectureModel from "../models/lectureModel.js";
 import validator from "validator";
 import {v2 as cloudinary} from "cloudinary";
 import bcrypt from "bcrypt"
@@ -112,4 +113,37 @@ const allTeachers = async (req,res) =>{
   }
 }
 
-export {addTeach,adminLogin,allTeachers} 
+// API to get all lecture data
+const lecturesAdmin = async (req,res) => {
+  try {
+    const lectures = await lectureModel.find({})
+    res.json({success:true , lectures})
+  } catch (error) {
+    console.log(error)
+    res.json({success:false, message:error.message})
+  }
+}
+
+// API to cancel lecture by admin
+const cancelLecture = async(req,res) => {
+  try {
+    const {lectureId} = req.body;
+    const lectureData = await lectureModel.findById(lectureId)
+  
+    await lectureModel.findByIdAndUpdate(lectureId , {cancelled:true}) 
+    const {teachId , slotDate , slotTime } = lectureData;
+    const teacherData = await teacherModel.findById(teachId)
+    let slots_booked = teacherData.slots_booked;
+// find the booking object for this date 
+let slotObj = slots_booked.find(obj => obj.slotDate === slotDate); 
+if (slotObj) { 
+  slotObj.slotTime = slotObj.slotTime.filter(time => time !== slotTime); }
+
+    await teacherModel.findByIdAndUpdate(teachId, {slots_booked})
+    res.json({success:true, message:"appointment cancelled" })
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+}
+
+export { addTeach , adminLogin , allTeachers , lecturesAdmin, cancelLecture } 

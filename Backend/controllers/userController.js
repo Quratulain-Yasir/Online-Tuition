@@ -201,5 +201,33 @@ if (slotObj) {
   }
 }
 
+// API for payment through razorpay
+const razorpayInstance = {
+  id: process.env.razorpay_id ,
+  secret : process.env.razorpay_secret
+}
+
+const razorpayPayment = async (req, res) => {
+  try {
+    const {lectureId} = req.body;
+    const lectureData = await lectureModel.findById(lectureId)
+   if(!lectureData || lectureData.cancel){
+    res.json({ success: false, message: "unauthorized to proceed payment" });
+   }
+   const options = {
+    amount : lectureData.amount * 100 , 
+    currency: process.env.CURRENCY,
+    recipit: lectureId , 
+   }
+
+  //  create order
+  const order = await razorpayInstance.order.create(options)
+  res.json({success : True , order })
+    
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+}
+
 
 export { registerUser, loginUser, getProfile, updateProfile, bookLecture , listLecture , cancelLecture };
