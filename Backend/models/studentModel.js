@@ -8,7 +8,7 @@ const studentSchema = {
     address: {type:Object , default:{line1:"" , line2:""}} , 
     dob: {type:String , default:"Not Selected"} , 
     phone: {type:String , default:"00000000000"} ,
-    gender: {type:String , enum:["Male" , "Female" , "other"] , default:"Select gender"}
+    gender: {type:String , enum:["Male" , "Female" , "other"] , default:null}
 }
 const studentModel = mongoose.model.student || mongoose.model("student" , studentSchema)
 
