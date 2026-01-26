@@ -7,6 +7,7 @@ export const AdminContext = createContext();
 const AdminContextProvider = (props) => {
   const [teachers, setTeachers] = useState([]);
   const [lectures, setLectures] = useState([]);
+  const [dashData , setDashData] = useState(false)
 
   // state variable to store token
   const [adminToken, setAdminToken] = useState(
@@ -90,6 +91,24 @@ const cancelLecture = async (lectureId) => {
   }
 }
 
+// API to get dashboard data
+ 
+const getDashData = async () => {
+  try { 
+    const {data} = await axios.post(backendUrl + "/api/admin/admin-dashboard" , {} , {headers : {adminToken}})
+    if(data.success) {
+      setDashData(data.dashData)
+      console.log(data.dashData) 
+    } else{
+      toast.error(data.message);
+    }
+  } catch (error) {
+    toast.error(error.message);
+  }
+}
+
+
+
   const value = {
     adminToken,
     setAdminToken,
@@ -100,7 +119,7 @@ const cancelLecture = async (lectureId) => {
     lectures,
     setLectures,
     getAllLectures,
-    cancelLecture
+    cancelLecture , dashData , getDashData
   };
   return (
     <AdminContext.Provider value={value}>

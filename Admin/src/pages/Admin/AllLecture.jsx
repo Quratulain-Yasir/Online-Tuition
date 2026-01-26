@@ -13,7 +13,7 @@ const AllLecture = () => {
   }, [adminToken , getAllLectures])
 
   return (
-    <div className='w-full max-w-6xl  m-5'>
+    <div className='flex-1 max-w-6xl  m-5'>
 
       <p className='mb-3 text-lg font-medium'>All Lectures</p>
       <div className='bg-white border rounded text-sm h-[80vh] overflow-y-auto'>
@@ -29,7 +29,7 @@ const AllLecture = () => {
         </div>
         {/* content */}
         {lectures.map((item , index)=>( 
-          <div key={index} className='flex flex-wrap justify-between max-sm:gap-2 sm:grid sm:grid-cols-[0.5fr_3fr_1fr_3fr_3fr_1fr_1fr] items-center text-grey-500 py-3 px-6 border-b hover:bg-gray-50'>
+          <div key={index} className='flex flex-wrap justify-between max-sm:gap-2 sm:grid sm:grid-cols-[0.5fr_3fr_1fr_3fr_3fr_1fr_1fr] items-center text-grey-500 py-3 px-6 border-b hover:bg-cyan-50'>
               <p className='max-sm:hidden'>{index+1}</p>
           <div className="flex items-center gap-2">
                 <div className='w-12 h-12 rounded-full overflow-hidden'>

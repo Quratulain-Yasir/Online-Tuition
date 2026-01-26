@@ -9,7 +9,7 @@ const Sidebar = () => {
 
 
   return (
-    <div className='min-h-screen bg-white border-r'>
+    <div className='h-screen bg-white border-r w-64 flex-shrink-0'>
       {
         adminToken && <ul className='text-[#515151] mt-5'>
           <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-60 cursor-pointer ${isActive ? "bg-[#F2F3FF] border-r-4 border-cyan-700 font-semibold" : ""}`}  to={"/admin-dashboard"}>

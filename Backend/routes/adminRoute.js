@@ -1,6 +1,6 @@
 import express from "express"
 
-import {addTeach,adminLogin , allTeachers, cancelLecture, lecturesAdmin} from "../controllers/adminController.js";
+import {addTeach,adminLogin , allTeachers, cancelLecture, lecturesAdmin, dashboardData } from "../controllers/adminController.js";
 
 import  upload  from "../middleware/multer.js"
 import authAdmin from "../middleware/authAdmin.js";
@@ -20,4 +20,6 @@ adminRoute.post("/change-avalibility" , authAdmin , changeAvalibility )
 adminRoute.post("/all-lectures" , authAdmin , lecturesAdmin )
 
 adminRoute.post("/cancel-lecture" , authAdmin , cancelLecture )
+
+adminRoute.post("/admin-dashboard" , authAdmin , dashboardData )
 export default adminRoute

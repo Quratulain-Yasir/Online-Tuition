@@ -2,6 +2,7 @@
 
 import teacherModel from "../models/teacherModel.js";
 import lectureModel from "../models/lectureModel.js";
+import studentModel from "../models/studentModel.js";
 import validator from "validator";
 import {v2 as cloudinary} from "cloudinary";
 import bcrypt from "bcrypt"
@@ -146,4 +147,23 @@ if (slotObj) {
   }
 }
 
-export { addTeach , adminLogin , allTeachers , lecturesAdmin, cancelLecture } 
+// API to get dashboard data for admin panel
+const dashboardData = async(req, res) => {
+  try {
+    const teacher = await teacherModel.find({})
+    const lecture = await lectureModel.find({}) 
+    const student = await studentModel.find({})
+
+    const dashData = {
+      teacher: teacher.length,
+      lecture: lecture.length,
+      student: student.length,
+      latestlecture: lecture.reverse().slice(0 , 5),
+    }
+    res.json({success:true, dashData})
+  } catch (error) {
+    res.json({success:false, message:error.message})
+  }
+}
+
+export { addTeach , adminLogin , allTeachers , lecturesAdmin, cancelLecture , dashboardData } 
