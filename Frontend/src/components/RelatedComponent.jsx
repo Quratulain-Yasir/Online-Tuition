@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 import {AppContext} from "../context/AppContext"
+import { useNavigate } from 'react-router-dom'
 const RelatedComponent = ({teachId , speciality}) => {
+
     const {teachers} = useContext(AppContext)
     const [relTeach , setRelTeach] = useState([])
- 
+    const navigate = useNavigate();
+
     useEffect(()=>{
 if(teachers.length > 0 && speciality) {
     const teachersData = teachers.filter((teach)=> teach.speciality === speciality && teach._id !== teachId )
@@ -16,7 +19,7 @@ if(teachers.length > 0 && speciality) {
       <h2 className='text-3xl font-medium'>Related Teachers</h2> 
       <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
         {relTeach.slice(0, 5).map((item , index) => (
-          <div key={index}  onClick={()=>{navigate(`/lecture/${item._id}`); scrollTo(0 ,0)}} className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500'>
+          <div key={index}  onClick={()=>{navigate(`/lectures/teacher/${item._id}`); scrollTo(0 ,0)}} className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500'>
             <img className="bg-cyan-100" src={item.image} alt="teacher_pro" />
             <div className="p-4">
               <div className="flex items-center gap-2 text-sm text-center text-green-500">

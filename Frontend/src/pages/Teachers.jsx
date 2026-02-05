@@ -54,7 +54,7 @@ const Teachers = () => {
                 navigate(
                   speciality === "Computer Science"
                     ? "/teachers"
-                    : "/teachers/computer-science"
+                    : "/teachers/Computer Science"
                 )
               }
             >
@@ -70,7 +70,7 @@ const Teachers = () => {
                 navigate(
                   speciality === "Chemistry"
                     ? "/teachers"
-                    : "/teachers/chemistry"
+                    : "/teachers/Chemistry"
                 )
               }
             >
