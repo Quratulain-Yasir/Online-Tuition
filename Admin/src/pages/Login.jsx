@@ -4,11 +4,13 @@ import { toast } from "react-toastify";
 import axios from "axios"
 import { useContext , useState } from 'react';
 import {AdminContext} from "../context/AdminContext.jsx"
+import { TeacherContext } from '../context/TeacherContext.jsx';
 
 const Login = () => {
 
   const [state , setState] = useState("Admin")
   const {setAdminToken , backendUrl} = useContext(AdminContext)
+  const { setTToken } = useContext(TeacherContext)
  const [email , setEmail] = useState("")
   const [password , setPassword] = useState("")
 
@@ -25,12 +27,18 @@ setAdminToken(data.token)
   toast.error(data.message)
  }
 } else{
-  {state === "Teacher"}
+  
+  const {data} = await axios.post(backendUrl + "/api/teacher/login" , {email,password});
+ if(data.success){ 
+localStorage.setItem("tToken",  data.token)
+setTToken(data.token)
+console.log(data.token);
 }
-  } catch(error){
+  } 
+}catch(error){
     toast.error(error.message)
   }
-}
+ }
 
   return (
     <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'> 
@@ -51,6 +59,7 @@ setAdminToken(data.token)
       </div>
     </form>
   )
+
 }
 
 export default Login

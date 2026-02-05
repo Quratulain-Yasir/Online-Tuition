@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { AdminContext } from '../context/AdminContext'
 import { assets } from '../assets/assets';
 import { NavLink } from 'react-router-dom';
+import { TeacherContext } from '../context/TeacherContext';
 
 const Sidebar = () => {
   // 
   const {adminToken} = useContext(AdminContext);
-
+  const {tToken} = useContext(TeacherContext);
 
   return (
     <div className='h-screen bg-white border-r w-64 flex-shrink-0'>
@@ -28,6 +29,22 @@ const Sidebar = () => {
             <img src={assets.people_icon} alt="" />
             <p>Teachers List</p>
           </NavLink>
+        </ul>
+      }
+            {
+        tToken && <ul className='text-[#515151] mt-5'>
+          <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-60 cursor-pointer ${isActive ? "bg-[#F2F3FF] border-r-4 border-cyan-700 font-semibold" : ""}`}  to={"/teacher-dashboard"}>
+            <img src={assets.home_icon} alt="" />
+            <p>Dashboard</p>
+          </NavLink>
+          <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-60 cursor-pointer ${isActive ? "bg-[#F2F3FF] border-r-4 border-cyan-700 font-semibold" : ""}`}  to={"/teacher-lectures"}>
+            <img src={assets.appointment_icon} alt="" />
+            <p>Lectures</p>
+          </NavLink>
+          <NavLink className={({isActive})=> `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-60 cursor-pointer ${isActive ? "bg-[#F2F3FF] border-r-4 border-cyan-700 font-semibold" : ""}`} to={"/teacher-profile"}>
+            <img src={assets.add_icon} alt="" />
+            <p>Profile</p>
+          </NavLink> 
         </ul>
       }
     </div>

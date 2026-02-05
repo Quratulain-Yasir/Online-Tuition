@@ -73,8 +73,7 @@ const addTeach = async (req, res) => {
       about,
       fees, 
       address: JSON.parse(address),
-      date: Date.now(),
-      slots_booked: 0,
+      date: Date.now(), 
     };
 
     const newTeach = new teacherModel(TeachData);

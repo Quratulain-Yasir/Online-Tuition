@@ -166,8 +166,15 @@ const Teachers = () => {
               <img className="bg-cyan-100" src={item.image} alt="teacher_pro" />
               <div className="p-4">
                 <div className="flex items-center gap-2 text-sm text-center text-green-500">
-                  <p className="w-2 h-2 bg-green-500 rounded-full"></p>
-                  <p>Avaliable</p>
+                 
+                  
+                  {
+                    item.avalibility ? <> 
+                    <p className="w-2 h-2 bg-green-500 rounded-full"></p><p className="text-green-500">Avaliable</p>
+                    </> : <> 
+                    <p className="w-2 h-2 bg-gray-500 rounded-full"></p><p className="text-gray-500">Avaliable</p>
+                    </>
+                  }
                 </div>
                 <p className="text-gray-900 text-lg font-medium">{item.name}</p>
                 <p className="text-gray-600 text-sm">{item.speciality}</p>

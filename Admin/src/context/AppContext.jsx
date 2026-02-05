@@ -26,9 +26,8 @@ const AppContextProvider = (props) => {
     "December",
   ];
 
-  const slotDateFormate = (slotDate,slotTime) => {
-    console.log(slotDate)
-    console.log(slotTime)
+  const slotDateFormate = (slotDate) => {
+   
     if (!slotDate) return "";
     const dateArray = slotDate.split("_")
     return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2];

@@ -10,7 +10,8 @@ import list_icon from './list_icon.svg'
 import tick_icon from './tick_icon.svg'
 import appointments_icon from './appointments_icon.svg'
 import earning_icon from './earning_icon.svg'
-import patients_icon from './patients_icon.svg'
+import student_icon from './student_icon.svg'
+
 
 export const assets = {
     add_icon,
@@ -20,10 +21,10 @@ export const assets = {
     doctor_icon,
     upload_area,
     home_icon,
-    patients_icon,
+    student_icon,
     people_icon,
     list_icon,
     tick_icon,
     appointments_icon,
-    earning_icon
+    earning_icon 
 }

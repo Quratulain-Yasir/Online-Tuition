@@ -13,7 +13,7 @@ const AdminContextProvider = (props) => {
   const [adminToken, setAdminToken] = useState(
     localStorage.getItem("adminToken")
       ? localStorage.getItem("adminToken")
-      : "",
+      : ""
   );
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 

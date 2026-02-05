@@ -2,15 +2,19 @@ import React, { useContext } from 'react'
 import  logo  from '../assets/logo.png'
 import { AdminContext } from '../context/AdminContext'
 import { useNavigate } from 'react-router-dom';
+import { TeacherContext } from '../context/TeacherContext';
 
 const Navbar = () => {
     const {adminToken , setAdminToken} = useContext(AdminContext);
+    const {tToken , setTToken} = useContext(TeacherContext);
     const navigate = useNavigate()
 
     const logout = () => {
-        navigate("/")
+        navigate("/login")
         adminToken && setAdminToken("")
         adminToken && localStorage.removeItem("adminToken")
+        tToken && setTToken("")
+        tToken && localStorage.removeItem("tToken")
     }
   return (
     <div className="flex justify-between items-center px-4 sm:px-10 py-3 border-b bg-white">

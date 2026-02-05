@@ -31,6 +31,7 @@ const AppContextProvider = (props) => {
  // if request successful, update state with teachers list
       if (data.success) {
         setTeachers(data.teachers);
+        console.log(data.teachers);
       } else {
           // show error toast if backend returns failure
         toast.error(data.message);

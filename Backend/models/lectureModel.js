@@ -21,7 +21,6 @@ const lectureSchema = {
     type:Boolean , default:false
   },
 };
-const lectureModel =
-  mongoose.model.lecture || mongoose.model("lecture", lectureSchema);
+const lectureModel = mongoose.model.lecture || mongoose.model("lecture", lectureSchema);
 
 export default lectureModel;

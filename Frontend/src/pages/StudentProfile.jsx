@@ -154,7 +154,7 @@ const StudentProfile = () => {
               setStdData((prev) => ({ ...prev, gender: e.target.value }))
             }
             >
-                  <option value="" disabled>
+                  <option value="" >
       Select gender
     </option>
               <option value="Male">Male</option>
