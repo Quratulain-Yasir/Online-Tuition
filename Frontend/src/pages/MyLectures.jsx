@@ -13,7 +13,7 @@ const MyLectures = () => {
     "January",
     "February",
     "March",
-    "Aprial",
+    "April",
     "May",
     "June",
     "July",
@@ -82,7 +82,7 @@ const MyLectures = () => {
       </h2>
       <hr />
       <div>
-        {lectures.map((item, index) => (
+        {lectures.filter((item) => !item.cancelled).map((item, index) => (
           <div
             key={index}
             className="grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b"
